@@ -3,32 +3,43 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Package, Menu, X, ChevronDown, Home, GalleryHorizontal, Languages, Lock, MessageCircle, Box, Building2, FileText } from "lucide-react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useTranslation } from 'react-i18next'
 
 export default function Navbar() {
   const pathname = usePathname()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isServicesOpen, setIsServicesOpen] = useState(false)
-  const [lang, setLang] = useState<'en' | 'ar'>("en")
+  const { t, i18n } = useTranslation()
+
+  // Set dir attribute on html for RTL/LTR
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      document.documentElement.dir = i18n.language === 'ar' ? 'rtl' : 'ltr'
+    }
+  }, [i18n.language])
 
   const navItems = [
-    { href: "/", label: "Home", icon: <Home className="w-5 h-5 mr-1" /> },
+    { href: "/", label: t('Home'), icon: <Home className="w-5 h-5 mr-1" /> },
     {
       href: "/services",
-      label: "Services",
+      label: t('Services'),
       icon: <Building2 className="w-5 h-5 mr-1" />,
       hasDropdown: true,
       dropdownItems: [
-        { href: "/services/packaging", label: "Packaging" },
-        { href: "/services/logistics", label: "Logistics" },
-        { href: "/services/consulting", label: "Consulting" },
+        { href: "/services/packaging", label: t('Packaging') },
+        { href: "/services/logistics", label: t('Logistics') },
+        { href: "/services/consulting", label: t('Consulting') },
       ],
     },
-    { href: "/packaging-products", label: "Products", icon: <Box className="w-5 h-5 mr-1" /> },
-    { href: "/gallery", label: "Gallery", icon: <GalleryHorizontal className="w-5 h-5 mr-1" /> },
-    { href: "/quote", label: "Request a Quote", icon: <FileText className="w-5 h-5 mr-1" /> },
-    { href: "/portal", label: "Client Portal", icon: <Lock className="w-5 h-5 mr-1" /> },
+    { href: "/packaging-products", label: t('Products'), icon: <Box className="w-5 h-5 mr-1" /> },
+    { href: "/gallery", label: t('Gallery'), icon: <GalleryHorizontal className="w-5 h-5 mr-1" /> },
+    { href: "/quote", label: t('Request a Quote'), icon: <FileText className="w-5 h-5 mr-1" /> },
+    { href: "/portal", label: t('Client Portal'), icon: <Lock className="w-5 h-5 mr-1" /> },
   ]
+
+  const whatsappNumber = "+966535414997"
+  const whatsappLink = `https://wa.me/${whatsappNumber.replace(/[^\d]/g, "")}`
 
   return (
     <nav className="bg-offwhite border-b border-steel/30 sticky top-0 left-0 right-0 z-50 shadow-sm">
@@ -89,22 +100,22 @@ export default function Navbar() {
             ))}
             {/* Language Toggle */}
             <button
-              onClick={() => setLang(lang === 'en' ? 'ar' : 'en')}
+              onClick={() => i18n.changeLanguage(i18n.language === 'en' ? 'ar' : 'en')}
               className="ml-2 px-3 py-2 rounded-lg bg-kraft/20 text-deepgreen font-bold flex items-center gap-1 hover:bg-kraft/40 transition-all"
               title="Toggle Language"
             >
               <Languages className="w-5 h-5" />
-              {lang === 'en' ? 'EN' : 'AR'}
+              {i18n.language === 'en' ? 'EN' : 'AR'}
             </button>
             {/* WhatsApp Button */}
             <a
-              href="https://wa.me/966500000000"
+              href={whatsappLink}
               target="_blank"
               rel="noopener noreferrer"
               className="ml-2 px-3 py-2 rounded-lg bg-green-500 text-white font-bold flex items-center gap-2 hover:bg-green-600 transition-all shadow"
               title="Chat on WhatsApp"
             >
-              <MessageCircle className="w-5 h-5" /> WhatsApp
+              <MessageCircle className="w-5 h-5" /> {t('WhatsApp')}
             </a>
           </div>
           {/* Mobile Menu Button */}
@@ -149,22 +160,22 @@ export default function Navbar() {
               ))}
               {/* Language Toggle */}
               <button
-                onClick={() => setLang(lang === 'en' ? 'ar' : 'en')}
+                onClick={() => i18n.changeLanguage(i18n.language === 'en' ? 'ar' : 'en')}
                 className="w-full px-4 py-3 rounded-lg bg-kraft/20 text-deepgreen font-bold flex items-center gap-2 hover:bg-kraft/40 transition-all"
                 title="Toggle Language"
               >
                 <Languages className="w-5 h-5" />
-                {lang === 'en' ? 'EN' : 'AR'}
+                {i18n.language === 'en' ? 'EN' : 'AR'}
               </button>
               {/* WhatsApp Button */}
               <a
-                href="https://wa.me/966500000000"
+                href={whatsappLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full px-4 py-3 rounded-lg bg-green-500 text-white font-bold flex items-center gap-2 hover:bg-green-600 transition-all shadow"
                 title="Chat on WhatsApp"
               >
-                <MessageCircle className="w-5 h-5" /> WhatsApp
+                <MessageCircle className="w-5 h-5" /> {t('WhatsApp')}
               </a>
             </div>
           </div>

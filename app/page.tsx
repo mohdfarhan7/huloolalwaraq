@@ -6,11 +6,13 @@ import Navbar from "@/components/navbar"
 import ConveyorBelt from "@/components/conveyor-belt"
 import { ArrowDown, Sparkles, Zap, Shield, Star, Award, Users } from "lucide-react"
 import dynamic from 'next/dynamic'
+import { useTranslation } from 'react-i18next'
 const BoxExperience = dynamic(() => import('@/components/BoxExperience'), { ssr: false })
 
 export default function HomePage() {
   const router = useRouter()
   const [isVisible, setIsVisible] = useState(false)
+  const { t } = useTranslation()
 
   useEffect(() => {
     setIsVisible(true)
@@ -25,10 +27,10 @@ export default function HomePage() {
   }
 
   const stats = [
-    { number: "10K+", label: "Happy Clients", icon: Users },
-    { number: "50M+", label: "Packages Delivered", icon: Award },
-    { number: "99.9%", label: "Quality Rate", icon: Star },
-    { number: "24/7", label: "Support", icon: Shield },
+    { number: "10K+", label: t("Happy Clients"), icon: Users },
+    { number: "50M+", label: t("Packages Delivered"), icon: Award },
+    { number: "99.9%", label: t("Quality Rate"), icon: Star },
+    { number: "24/7", label: t("Support"), icon: Shield },
   ]
 
   return (
@@ -37,8 +39,8 @@ export default function HomePage() {
       <section className="relative w-full h-[calc(100vh-80px)] flex items-center justify-center overflow-hidden pt-20">
         <BoxExperience />
         <div className="absolute inset-0 flex flex-col items-center justify-center z-10 pointer-events-none">
-          <h1 className="text-5xl md:text-7xl font-black text-deepgreen drop-shadow-lg mb-4">Premium Packaging, Delivered</h1>
-          <p className="text-2xl md:text-3xl text-steel font-medium drop-shadow mb-8">Cinematic. Sustainable. Unforgettable.</p>
+          <h1 className="text-5xl md:text-7xl font-black text-deepgreen drop-shadow-lg mb-4">{t('Premium Packaging, Delivered')}</h1>
+          <p className="text-2xl md:text-3xl text-steel font-medium drop-shadow mb-8">{t('Cinematic. Sustainable. Unforgettable.')}</p>
         </div>
       </section>
       {/* About Section */}
@@ -97,13 +99,13 @@ export default function HomePage() {
       {/* Contact Section */}
       <section className="py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold text-deepgreen mb-4">Contact Us</h2>
+          <h2 className="text-4xl font-bold text-deepgreen mb-4">{t('Contact Us')}</h2>
           <p className="text-lg text-steel mb-8">Ready to elevate your packaging? Reach out to our team for a custom quote or more information.</p>
           <button
             onClick={() => router.push("/contact")}
             className="px-8 py-4 bg-deepgreen text-offwhite rounded-xl font-bold text-lg shadow hover:bg-kraft hover:text-deepgreen transition-all duration-200"
           >
-            Get in Touch
+            {t('Get in Touch')}
           </button>
         </div>
       </section>
