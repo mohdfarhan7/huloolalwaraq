@@ -6,6 +6,7 @@ import { useParams } from "next/navigation"
 import Navbar from "@/components/navbar"
 import { Button } from "@/components/ui/button"
 import { useState, useEffect } from "react"
+import Product3DViewer from '@/components/Product3DViewer'
 
 export default function ProductDetailsPage() {
   const params = useParams()
