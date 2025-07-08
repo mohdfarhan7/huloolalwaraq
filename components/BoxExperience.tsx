@@ -71,11 +71,17 @@ function IconButton3D({ icon, label, href, index, show, showLabel }: IconButtonP
   const labelRef = useRef<THREE.Mesh>(null)
   const iconTexture = getIconTexture(icon)
   const labelTexture = getLabelTexture(label)
+  // Distribute icons in an arc (from -60deg to +60deg)
+  const total = NAV_LINKS.length
+  const angle = ((index / (total - 1)) * 120 - 60) * (Math.PI / 180) // -60deg to +60deg
   useFrame(() => {
     if (meshRef.current) {
-      const targetY = show ? 1.3 + index * 0.6 : 0.5
+      const targetRadius = show ? 1.6 + index * 0.1 : 0.5
+      const targetY = show ? 1.3 + Math.sin(angle) * targetRadius : 0.5
+      const targetX = show ? Math.cos(angle) * targetRadius : 0
       const targetScale = show ? 1 : 0.7
       meshRef.current.position.y += (targetY - meshRef.current.position.y) * 0.13
+      meshRef.current.position.x += (targetX - meshRef.current.position.x) * 0.13
       meshRef.current.scale.x += (targetScale - meshRef.current.scale.x) * 0.13
       meshRef.current.scale.y += (targetScale - meshRef.current.scale.y) * 0.13
       meshRef.current.scale.z += (targetScale - meshRef.current.scale.z) * 0.13
@@ -253,8 +259,9 @@ export default function BoxExperience() {
     const t1 = setTimeout(() => setShiver(false), 900)
     const t2 = setTimeout(() => setShowConfetti(true), 1100)
     const t3 = setTimeout(() => setShowLinks(true), 1400)
-    const t4 = setTimeout(() => setOpen(true), 1700)
-    const t5 = setTimeout(() => setShowLabels(true), 2200)
+    // Open the box only after popout icons are visible
+    const t4 = setTimeout(() => setOpen(true), 2000)
+    const t5 = setTimeout(() => setShowLabels(true), 2300)
     return () => {
       clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); clearTimeout(t4); clearTimeout(t5)
       disposeAllTextures()
@@ -279,7 +286,7 @@ export default function BoxExperience() {
         <ambientLight intensity={0.7} />
         <directionalLight position={[5, 10, 7]} intensity={1.2} castShadow />
         <Float floatIntensity={0.2} speed={1.2}>
-          <Box open={open} logoPath="/placeholder-logo.png" showLinks={showLinks} shiver={shiver} showConfetti={showConfetti} showLabels={showLabels} />
+          <Box open={open} logoPath="/logo.jpg" showLinks={showLinks} shiver={shiver} showConfetti={showConfetti} showLabels={showLabels} />
         </Float>
         <OrbitControls enableZoom={false} enablePan={false} maxPolarAngle={Math.PI / 2.1} minPolarAngle={Math.PI / 2.5} />
       </Canvas>

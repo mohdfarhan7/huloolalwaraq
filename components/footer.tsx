@@ -51,7 +51,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-8">
           <div>
             <div className="flex items-center mb-4">
-              <Package className="w-8 h-8 text-deepgreen mr-2" />
+              <img src="/logo.jpg" alt="HuloolAlWaraq Logo" className="h-10 w-10 object-contain rounded bg-white p-1 border border-steel mr-2" />
               <span className="text-2xl font-black text-deepgreen tracking-tight">HuloolAlWaraq</span>
             </div>
             <p className="text-steel mb-4">{t('Premium Packaging Solutions')}</p>

@@ -60,9 +60,11 @@ export default function QuoteRequestForm({ onClose }: { onClose: () => void }) {
   }
 
   return (
-    <form className="p-8 w-full max-w-md bg-white rounded-2xl shadow-xl border border-kraft/30" onSubmit={handleSubmit}>
-      <h2 className="text-3xl font-extrabold mb-6 text-deepgreen text-center tracking-tight">Request a Quote</h2>
-      <div className="space-y-4">
+    <form className="p-8 w-full max-w-md bg-white rounded-2xl shadow-xl border border-kraft/30 max-h-[80vh] overflow-y-auto scrollbar-thin scrollbar-thumb-kraft scrollbar-track-offwhite" onSubmit={handleSubmit}>
+      <div className="sticky top-0 z-10 bg-white pb-2 mb-4">
+        <h2 className="text-3xl font-extrabold text-deepgreen text-center tracking-tight">Request a Quote</h2>
+      </div>
+      <div className="space-y-6">
         <div>
           <label className="block mb-1 font-semibold text-steel">Company Name</label>
           <input name="company" value={form.company} onChange={handleChange} required className="w-full px-4 py-3 border border-kraft/30 rounded-xl bg-offwhite focus:ring-2 focus:ring-deepgreen focus:outline-none transition" />

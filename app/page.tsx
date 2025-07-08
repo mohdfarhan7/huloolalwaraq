@@ -36,7 +36,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-offwhite text-dark font-sans">
       <Navbar />
-      <section className="relative w-full min-h-screen md:h-[80vh] h-[60vh] flex items-center justify-center overflow-visible p-0 m-0 bg-transparent">
+      <section className="relative w-full min-h-screen md:h-[80vh] h-[60vh] flex items-center justify-center overflow-visible p-0 m-0 bg-gradient-to-b from-kraft/80 via-kraft/60 to-offwhite">
         <BoxExperience />
         <div className="absolute inset-0 flex flex-col items-center justify-center z-10 pointer-events-none">
           <h1 className="text-5xl md:text-7xl font-black text-deepgreen drop-shadow-lg mb-4">{t('Premium Packaging, Delivered')}</h1>
@@ -45,28 +45,28 @@ export default function HomePage() {
         </div>
       </section>
       {/* About Section */}
-      <section className="py-20 px-4 bg-kraft/10">
+      <section className="py-20 px-4 bg-deepgreen/95">
         <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-4xl font-bold text-deepgreen mb-4">{t('About HuloolAlWaraq')}</h2>
-          <p className="text-lg text-steel mb-8">{t('We are a leading packaging manufacturer, connecting businesses to premium, sustainable packaging solutions since 2005.')}</p>
+          <h2 className="text-4xl font-bold text-kraft mb-4">{t('About HuloolAlWaraq')}</h2>
+          <p className="text-lg text-offwhite mb-8">{t('We are a leading packaging manufacturer, connecting businesses to premium, sustainable packaging solutions since 2005.')}</p>
         </div>
       </section>
       {/* Services Section */}
-      <section className="py-20 px-4">
+      <section className="py-20 px-4 bg-kraft/20">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-4xl font-bold text-deepgreen text-center mb-12">{t('Our Services')}</h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-offwhite border border-steel rounded-2xl p-8 text-center shadow hover:shadow-lg transition-all">
+            <div className="bg-kraft/90 border border-kraft rounded-2xl p-8 text-center shadow hover:shadow-lg transition-all">
               <div className="text-5xl mb-4">📦</div>
               <h3 className="text-xl font-bold text-deepgreen mb-2">{t('Custom Packaging')}</h3>
               <p className="text-steel">{t('Tailored solutions for your unique business needs.')}</p>
             </div>
-            <div className="bg-offwhite border border-steel rounded-2xl p-8 text-center shadow hover:shadow-lg transition-all">
+            <div className="bg-deepgreen/90 border border-deepgreen rounded-2xl p-8 text-center shadow hover:shadow-lg transition-all">
               <div className="text-5xl mb-4">🚚</div>
-              <h3 className="text-xl font-bold text-deepgreen mb-2">{t('Fast Delivery')}</h3>
-              <p className="text-steel">{t('On-time, reliable shipping for every order.')}</p>
+              <h3 className="text-xl font-bold text-kraft mb-2">{t('Fast Delivery')}</h3>
+              <p className="text-offwhite">{t('On-time, reliable shipping for every order.')}</p>
             </div>
-            <div className="bg-offwhite border border-steel rounded-2xl p-8 text-center shadow hover:shadow-lg transition-all">
+            <div className="bg-offwhite border border-kraft rounded-2xl p-8 text-center shadow hover:shadow-lg transition-all">
               <div className="text-5xl mb-4">♻️</div>
               <h3 className="text-xl font-bold text-deepgreen mb-2">{t('Eco-Friendly')}</h3>
               <p className="text-steel">{t('Sustainable materials and processes for a greener future.')}</p>
@@ -79,32 +79,32 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto">
           <h2 className="text-4xl font-bold text-deepgreen text-center mb-12">{t('Featured Products')}</h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white border border-steel rounded-2xl p-8 text-center shadow hover:shadow-lg transition-all">
+            <div className="bg-white border border-kraft rounded-2xl p-8 text-center shadow hover:shadow-lg transition-all">
               <div className="text-5xl mb-4">📦</div>
               <h3 className="text-xl font-bold text-deepgreen mb-2">{t('Corrugated Boxes')}</h3>
               <p className="text-steel">{t('Durable, customizable, and perfect for shipping.')}</p>
-          </div>
-            <div className="bg-white border border-steel rounded-2xl p-8 text-center shadow hover:shadow-lg transition-all">
-              <div className="text-5xl mb-4">🫧</div>
+            </div>
+            <div className="bg-kraft/90 border border-kraft rounded-2xl p-8 text-center shadow hover:shadow-lg transition-all">
+              <div className="text-5xl mb-4">🧧</div>
               <h3 className="text-xl font-bold text-deepgreen mb-2">{t('Bubble Wrap')}</h3>
               <p className="text-steel">{t('Protect your products with premium cushioning.')}</p>
-                  </div>
-            <div className="bg-white border border-steel rounded-2xl p-8 text-center shadow hover:shadow-lg transition-all">
+            </div>
+            <div className="bg-deepgreen/90 border border-deepgreen rounded-2xl p-8 text-center shadow hover:shadow-lg transition-all">
               <div className="text-5xl mb-4">🏷️</div>
-              <h3 className="text-xl font-bold text-deepgreen mb-2">{t('Custom Labels')}</h3>
-              <p className="text-steel">{t('Brand your packaging with high-quality labels.')}</p>
-              </div>
+              <h3 className="text-xl font-bold text-kraft mb-2">{t('Custom Labels')}</h3>
+              <p className="text-offwhite">{t('Brand your packaging with high-quality labels.')}</p>
+            </div>
           </div>
         </div>
       </section>
       {/* Contact Section */}
-      <section className="py-20 px-4">
+      <section className="py-20 px-4 bg-deepgreen/95">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold text-deepgreen mb-4">{t('Contact Us')}</h2>
-          <p className="text-lg text-steel mb-8">{t('Ready to elevate your packaging? Reach out to our team for a custom quote or more information.')}</p>
+          <h2 className="text-4xl font-bold text-kraft mb-4">{t('Contact Us')}</h2>
+          <p className="text-lg text-offwhite mb-8">{t('Ready to elevate your packaging? Reach out to our team for a custom quote or more information.')}</p>
           <button
             onClick={() => router.push("/contact")}
-            className="px-8 py-4 bg-deepgreen text-offwhite rounded-xl font-bold text-lg shadow hover:bg-kraft hover:text-deepgreen transition-all duration-200"
+            className="px-8 py-4 bg-kraft text-deepgreen rounded-xl font-bold text-lg shadow hover:bg-deepgreen hover:text-kraft transition-all duration-200"
           >
             {t('Get in Touch')}
           </button>

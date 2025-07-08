@@ -47,7 +47,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-20">
           <Link href="/" className="flex items-center space-x-3 group">
             <img
-              src="/placeholder-logo.png"
+              src="/logo.jpg"
               alt="HuloolAlWaraq Logo"
               className="h-12 w-12 object-contain rounded bg-white p-1 border border-steel"
             />
