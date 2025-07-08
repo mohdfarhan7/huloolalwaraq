@@ -3,6 +3,7 @@
 import Navbar from "@/components/navbar"
 import { Globe, Heart, Target, Eye, Zap, Shield } from "lucide-react"
 import { useState, useEffect } from "react"
+import { useTranslation } from 'react-i18next'
 
 export default function AboutPage() {
   const [isVisible, setIsVisible] = useState(false)
@@ -12,53 +13,55 @@ export default function AboutPage() {
     setIsVisible(true)
   }, [])
 
+  const { t } = useTranslation()
+
   const teamMembers = [
     {
-      name: "John Smith",
-      role: "CEO & Founder",
+      name: t("John Smith"),
+      role: t("CEO & Founder"),
       image: "👨‍💼",
-      bio: "20+ years in packaging industry, former VP at Global Packaging Solutions",
-      expertise: ["Strategic Leadership", "Industry Innovation", "Sustainable Practices"],
+      bio: t("20+ years in packaging industry, former VP at Global Packaging Solutions"),
+      expertise: [t("Strategic Leadership"), t("Industry Innovation"), t("Sustainable Practices")],
       linkedin: "#",
     },
     {
-      name: "Sarah Johnson",
-      role: "Head of Operations",
+      name: t("Sarah Johnson"),
+      role: t("Head of Operations"),
       image: "👩‍💼",
-      bio: "Expert in supply chain management and operational excellence",
-      expertise: ["Supply Chain", "Quality Control", "Process Optimization"],
+      bio: t("Expert in supply chain management and operational excellence"),
+      expertise: [t("Supply Chain"), t("Quality Control"), t("Process Optimization")],
       linkedin: "#",
     },
     {
-      name: "Mike Chen",
-      role: "Quality Control Manager",
+      name: t("Mike Chen"),
+      role: t("Quality Control Manager"),
       image: "👨‍🔬",
-      bio: "PhD in Materials Science, ensures highest quality standards",
-      expertise: ["Materials Science", "Quality Assurance", "Testing Protocols"],
+      bio: t("PhD in Materials Science, ensures highest quality standards"),
+      expertise: [t("Materials Science"), t("Quality Assurance"), t("Testing Protocols")],
       linkedin: "#",
     },
     {
-      name: "Lisa Brown",
-      role: "Customer Relations Director",
+      name: t("Lisa Brown"),
+      role: t("Customer Relations Director"),
       image: "👩‍💻",
-      bio: "Dedicated to customer satisfaction and relationship building",
-      expertise: ["Customer Success", "Account Management", "Support Systems"],
+      bio: t("Dedicated to customer satisfaction and relationship building"),
+      expertise: [t("Customer Success"), t("Account Management"), t("Support Systems")],
       linkedin: "#",
     },
     {
-      name: "David Wilson",
-      role: "Innovation Lead",
+      name: t("David Wilson"),
+      role: t("Innovation Lead"),
       image: "👨‍🎨",
-      bio: "Leading R&D initiatives and sustainable packaging solutions",
-      expertise: ["Product Development", "Sustainability", "Innovation"],
+      bio: t("Leading R&D initiatives and sustainable packaging solutions"),
+      expertise: [t("Product Development"), t("Sustainability"), t("Innovation")],
       linkedin: "#",
     },
     {
-      name: "Emma Davis",
-      role: "Marketing Director",
+      name: t("Emma Davis"),
+      role: t("Marketing Director"),
       image: "👩‍🎨",
-      bio: "Brand strategist with focus on digital transformation",
-      expertise: ["Brand Strategy", "Digital Marketing", "Market Analysis"],
+      bio: t("Brand strategist with focus on digital transformation"),
+      expertise: [t("Brand Strategy"), t("Digital Marketing"), t("Market Analysis")],
       linkedin: "#",
     },
   ]
@@ -122,14 +125,14 @@ export default function AboutPage() {
       <Navbar />
       <section className="pt-32 pb-16 px-4 bg-offwhite text-center">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-7xl font-black text-deepgreen mb-6">About HuloolAlWaraq</h1>
-          <p className="text-xl md:text-2xl text-steel mb-8">Pioneering the future of packaging with innovation, sustainability, and excellence since 2005.</p>
+          <h1 className="text-5xl md:text-7xl font-black text-deepgreen mb-6">{t('About HuloolAlWaraq')}</h1>
+          <p className="text-xl md:text-2xl text-steel mb-8">{t('Pioneering the future of packaging with innovation, sustainability, and excellence since 2005.')}</p>
         </div>
       </section>
       <section className="py-16 px-4 bg-kraft/10">
         <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-4xl font-bold text-deepgreen mb-4">Our Mission</h2>
-          <p className="text-lg text-steel mb-8">To provide innovative, sustainable packaging solutions that protect products, enhance brand value, and contribute to a better environment for future generations.</p>
+          <h2 className="text-4xl font-bold text-deepgreen mb-4">{t('Our Mission')}</h2>
+          <p className="text-lg text-steel mb-8">{t('To provide innovative, sustainable packaging solutions that protect products, enhance brand value, and contribute to a better environment for future generations.')}</p>
         </div>
       </section>
       <section className="py-16 px-4">

@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { useState, useEffect } from "react"
+import { useTranslation } from 'react-i18next'
 
 export default function PackagingProductsPage() {
   const [isVisible, setIsVisible] = useState(false)
@@ -15,18 +16,20 @@ export default function PackagingProductsPage() {
   const [selectedCategory, setSelectedCategory] = useState("all")
   const [selectedSector, setSelectedSector] = useState("all")
 
+  const { t } = useTranslation()
+
   useEffect(() => {
     setIsVisible(true)
   }, [])
 
   const categories = [
-    { id: "all", name: "All Products", count: 450, icon: "📦" },
-    { id: "corrugated", name: "Corrugated Boxes", count: 85, icon: "📦" },
-    { id: "protective", name: "Protective Packaging", count: 67, icon: "🛡️" },
-    { id: "industrial", name: "Industrial Packaging", count: 54, icon: "🏭" },
-    { id: "food", name: "Food Packaging", count: 78, icon: "🍕" },
-    { id: "retail", name: "Retail Packaging", count: 92, icon: "🏪" },
-    { id: "specialty", name: "Specialty Products", count: 74, icon: "⚡" },
+    { id: "all", name: t("All Products"), count: 450, icon: "📦" },
+    { id: "corrugated", name: t("Corrugated Boxes"), count: 85, icon: "📦" },
+    { id: "protective", name: t("Protective Packaging"), count: 67, icon: "🛡️" },
+    { id: "industrial", name: t("Industrial Packaging"), count: 54, icon: "🏭" },
+    { id: "food", name: t("Food Packaging"), count: 78, icon: "🍕" },
+    { id: "retail", name: t("Retail Packaging"), count: 92, icon: "🏪" },
+    { id: "specialty", name: t("Specialty Products"), count: 74, icon: "⚡" },
   ]
 
   const sectors = [
@@ -677,10 +680,8 @@ export default function PackagingProductsPage() {
       <Navbar />
       <div className="pt-32 px-4">
         <div className="max-w-8xl mx-auto">
-          <h1 className="text-5xl md:text-7xl font-black text-deepgreen text-center mb-6">Our Packaging Products</h1>
-          <p className="text-xl text-steel max-w-4xl mx-auto mb-12 text-center">
-            We offer a full range of premium packaging solutions for every industry and need.
-          </p>
+          <h1 className="text-5xl md:text-7xl font-black text-deepgreen text-center mb-6">{t('Our Packaging Products')}</h1>
+          <p className="text-xl text-steel max-w-4xl mx-auto mb-12 text-center">{t('We offer a full range of premium packaging solutions for every industry and need.')}</p>
           {/* Category Overview Cards */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
             {categories.slice(1).map((category, index) => (
@@ -715,7 +716,7 @@ export default function PackagingProductsPage() {
             <div>
               <h3 className="text-lg font-semibold text-deepgreen mb-3 flex items-center gap-2">
                 <Package className="w-5 h-5" />
-                Product Categories
+                {t('Product Categories')}
               </h3>
               <div className="flex flex-wrap gap-2">
                 {categories.map((category) => (
@@ -733,7 +734,7 @@ export default function PackagingProductsPage() {
             <div>
               <h3 className="text-lg font-semibold text-deepgreen mb-3 flex items-center gap-2">
                 <Filter className="w-5 h-5" />
-                Industry Sectors
+                {t('Industry Sectors')}
               </h3>
               <div className="flex flex-wrap gap-2">
                 {sectors.map((sector) => (
@@ -750,7 +751,7 @@ export default function PackagingProductsPage() {
             {/* View Toggle and Results Count */}
             <div className="flex justify-between items-center">
               <div className="text-steel">
-                Showing <span className="font-semibold text-deepgreen">{filteredProducts.length}</span> of <span className="font-semibold text-deepgreen">{products.length}</span> products
+                {t('Showing')} <span className="font-semibold text-deepgreen">{filteredProducts.length}</span> {t('of')} <span className="font-semibold text-deepgreen">{products.length}</span> {t('products')}
               </div>
               <div className="flex gap-2">
                 <button
@@ -778,7 +779,7 @@ export default function PackagingProductsPage() {
               <Card className="h-full bg-white bg-cardboard-texture border border-steel hover:border-deepgreen transition-all duration-200 rounded-2xl overflow-hidden shadow hover:shadow-lg flex flex-col">
                 <CardHeader className="text-center relative">
                   {product.trending && (
-                    <div className="absolute top-4 right-4 bg-kraft text-deepgreen text-xs px-2 py-1 rounded-full font-bold shadow">🔥 TRENDING</div>
+                    <div className="absolute top-4 right-4 bg-kraft text-deepgreen text-xs px-2 py-1 rounded-full font-bold shadow">🔥 {t('TRENDING')}</div>
                   )}
                   <div className="text-6xl mb-4">{product.image}</div>
                   <CardTitle className="text-lg text-deepgreen font-bold mb-2">{product.name}</CardTitle>
@@ -811,12 +812,12 @@ export default function PackagingProductsPage() {
                   {/* Stock Status */}
                   <div className="flex items-center gap-2">
                     <div className={`w-2 h-2 rounded-full ${product.inStock ? 'bg-green-400' : 'bg-red-400'}`} />
-                    <span className={`text-sm ${product.inStock ? 'text-green-700' : 'text-red-500'}`}>{product.inStock ? 'In Stock' : 'Out of Stock'}</span>
+                    <span className={`text-sm ${product.inStock ? 'text-green-700' : 'text-red-500'}`}>{product.inStock ? t('In Stock') : t('Out of Stock')}</span>
                   </div>
                   {/* Action Buttons */}
                   <div className="flex gap-2 pt-4">
                     <Link href={`/product-details/${product.id}`} className="flex-1">
-                      <Button className="w-full bg-deepgreen text-offwhite rounded-xl transition-all duration-200 hover:bg-kraft hover:text-deepgreen text-sm font-bold">View Details</Button>
+                      <Button className="w-full bg-deepgreen text-offwhite rounded-xl transition-all duration-200 hover:bg-kraft hover:text-deepgreen text-sm font-bold">{t('View Details')}</Button>
                     </Link>
                     <Button variant="outline" className="border-steel text-deepgreen hover:bg-kraft/10 rounded-xl transition-all duration-200 bg-transparent" disabled={!product.inStock}>
                       <ShoppingCart className="w-4 h-4" />
@@ -831,8 +832,8 @@ export default function PackagingProductsPage() {
         {filteredProducts.length === 0 && (
           <div className="text-center py-20">
             <div className="text-6xl mb-6">🔍</div>
-            <h3 className="text-2xl font-bold text-deepgreen mb-4">No products found</h3>
-            <p className="text-steel mb-8">Try adjusting your search or filter criteria</p>
+            <h3 className="text-2xl font-bold text-deepgreen mb-4">{t('No products found')}</h3>
+            <p className="text-steel mb-8">{t('Try adjusting your search or filter criteria')}</p>
             <Button
               onClick={() => {
                 setSearchTerm("")
@@ -841,7 +842,7 @@ export default function PackagingProductsPage() {
               }}
               className="bg-deepgreen text-offwhite rounded-xl font-bold"
             >
-              Clear All Filters
+              {t('Clear All Filters')}
             </Button>
           </div>
         )}
@@ -850,25 +851,25 @@ export default function PackagingProductsPage() {
       {/* Featured Products Section */}
       <div className="mt-20">
         <div className="bg-white border border-steel rounded-3xl p-12">
-          <h3 className="text-3xl font-bold text-deepgreen mb-8 text-center">Featured Solutions</h3>
+          <h3 className="text-3xl font-bold text-deepgreen mb-8 text-center">{t('Featured Solutions')}</h3>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center p-6 bg-offwhite border border-kraft/30 rounded-2xl hover:bg-kraft/10 transition-all duration-200">
               <div className="text-6xl mb-4">📦</div>
-              <h4 className="text-xl font-bold text-deepgreen mb-3">Wrap Around Boxes</h4>
-              <p className="text-steel mb-4">Adjustable boxes that perfectly fit your products</p>
-              <div className="text-sm text-kraft">• No void fill needed • Professional appearance • Cost effective</div>
+              <h4 className="text-xl font-bold text-deepgreen mb-3">{t('Wrap Around Boxes')}</h4>
+              <p className="text-steel mb-4">{t('Adjustable boxes that perfectly fit your products')}</p>
+              <div className="text-sm text-kraft">• {t('No void fill needed')} • {t('Professional appearance')} • {t('Cost effective')}</div>
             </div>
             <div className="text-center p-6 bg-offwhite border border-kraft/30 rounded-2xl hover:bg-kraft/10 transition-all duration-200">
               <div className="text-6xl mb-4">🥬</div>
-              <h4 className="text-xl font-bold text-deepgreen mb-3">Telescopic Boxes for Fresh Produce</h4>
-              <p className="text-steel mb-4">Specialized ventilated boxes for agricultural products</p>
-              <div className="text-sm text-kraft">• Optimal ventilation • Moisture control • Stackable design</div>
+              <h4 className="text-xl font-bold text-deepgreen mb-3">{t('Telescopic Boxes for Fresh Produce')}</h4>
+              <p className="text-steel mb-4">{t('Specialized ventilated boxes for agricultural products')}</p>
+              <div className="text-sm text-kraft">• {t('Optimal ventilation')} • {t('Moisture control')} • {t('Stackable design')}</div>
             </div>
             <div className="text-center p-6 bg-offwhite border border-kraft/30 rounded-2xl hover:bg-kraft/10 transition-all duration-200">
               <div className="text-6xl mb-4">🍕</div>
-              <h4 className="text-xl font-bold text-deepgreen mb-3">Double-Decker Pizza Boxes</h4>
-              <p className="text-steel mb-4">Innovative two-level design for multiple pizzas</p>
-              <div className="text-sm text-kraft">• Space efficient • Heat retention • Grease resistant</div>
+              <h4 className="text-xl font-bold text-deepgreen mb-3">{t('Double-Decker Pizza Boxes')}</h4>
+              <p className="text-steel mb-4">{t('Innovative two-level design for multiple pizzas')}</p>
+              <div className="text-sm text-kraft">• {t('Space efficient')} • {t('Heat retention')} • {t('Grease resistant')}</div>
             </div>
           </div>
         </div>
@@ -876,7 +877,7 @@ export default function PackagingProductsPage() {
       {/* Industry Solutions */}
       <div className="mt-20">
         <div className="bg-white border border-steel rounded-3xl p-12">
-          <h3 className="text-3xl font-bold text-deepgreen mb-8 text-center">Industry-Specific Solutions</h3>
+          <h3 className="text-3xl font-bold text-deepgreen mb-8 text-center">{t('Industry-Specific Solutions')}</h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
@@ -926,7 +927,7 @@ export default function PackagingProductsPage() {
                     <div key={idx} className="text-sm text-kraft">• {product}</div>
                   ))}
                 </div>
-                <div className="text-sm font-semibold text-deepgreen">{solution.count} products available</div>
+                <div className="text-sm font-semibold text-deepgreen">{solution.count} {t('products available')}</div>
               </button>
             ))}
           </div>
@@ -935,16 +936,16 @@ export default function PackagingProductsPage() {
       {/* Call to Action */}
       <div className="mt-20">
         <div className="bg-kraft/10 border border-kraft/30 rounded-3xl p-12 text-center">
-          <h3 className="text-3xl font-bold text-deepgreen mb-6">Need Custom Packaging Solutions?</h3>
+          <h3 className="text-3xl font-bold text-deepgreen mb-6">{t('Need Custom Packaging Solutions?')}</h3>
           <p className="text-xl text-steel mb-8 max-w-3xl mx-auto">
-            Our packaging experts can create custom solutions tailored to your specific industry needs and requirements. From design to delivery, we handle everything across all sectors.
+            {t('Our packaging experts can create custom solutions tailored to your specific industry needs and requirements. From design to delivery, we handle everything across all sectors.')}
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link href="/contact">
-              <Button className="bg-deepgreen text-offwhite font-semibold px-8 py-4 rounded-xl transition-all duration-200 hover:bg-kraft hover:text-deepgreen">Get Custom Quote</Button>
+              <Button className="bg-deepgreen text-offwhite font-semibold px-8 py-4 rounded-xl transition-all duration-200 hover:bg-kraft hover:text-deepgreen">{t('Get Custom Quote')}</Button>
             </Link>
             <Link href="/services">
-              <Button variant="outline" className="border-deepgreen text-deepgreen hover:bg-kraft/10 px-8 py-4 rounded-xl transition-all duration-200 bg-transparent">View Our Services</Button>
+              <Button variant="outline" className="border-deepgreen text-deepgreen hover:bg-kraft/10 px-8 py-4 rounded-xl transition-all duration-200 bg-transparent">{t('View Our Services')}</Button>
             </Link>
           </div>
         </div>

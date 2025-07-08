@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Phone, Mail, MessageCircle, Calendar } from "lucide-react"
+import { useTranslation } from 'react-i18next'
 
 export default function ContactPage() {
   const [isVisible, setIsVisible] = useState(false)
@@ -20,6 +21,8 @@ export default function ContactPage() {
     inquiryType: "general",
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const { t } = useTranslation()
 
   useEffect(() => {
     setIsVisible(true)
@@ -55,68 +58,68 @@ export default function ContactPage() {
   const contactMethods = [
     {
       icon: Phone,
-      title: "Call Us",
-      description: "Speak directly with our experts",
-      details: ["+1 (555) 123-4567", "+1 (555) 123-4568"],
-      action: "Call Now",
+      title: t("Call Us"),
+      description: t("Speak directly with our experts"),
+      details: [t("+1 (555) 123-4567"), t("+1 (555) 123-4568")],
+      action: t("Call Now"),
       color: "from-green-500/20 to-emerald-500/20",
     },
     {
       icon: Mail,
-      title: "Email Us",
-      description: "Send us a detailed message",
-      details: ["info@packagepro.com", "sales@packagepro.com"],
-      action: "Send Email",
+      title: t("Email Us"),
+      description: t("Send us a detailed message"),
+      details: [t("info@packagepro.com"), t("sales@packagepro.com")],
+      action: t("Send Email"),
       color: "from-blue-500/20 to-cyan-500/20",
     },
     {
       icon: MessageCircle,
-      title: "Live Chat",
-      description: "Get instant support",
-      details: ["Available 24/7", "Average response: 2 min"],
-      action: "Start Chat",
+      title: t("Live Chat"),
+      description: t("Get instant support"),
+      details: [t("Available 24/7"), t("Average response: 2 min")],
+      action: t("Start Chat"),
       color: "from-purple-500/20 to-pink-500/20",
     },
     {
       icon: Calendar,
-      title: "Schedule Meeting",
-      description: "Book a consultation",
-      details: ["30-min free consultation", "Custom solutions"],
-      action: "Book Now",
+      title: t("Schedule Meeting"),
+      description: t("Book a consultation"),
+      details: [t("30-min free consultation"), t("Custom solutions")],
+      action: t("Book Now"),
       color: "from-orange-500/20 to-red-500/20",
     },
   ]
 
   const offices = [
     {
-      city: "New York (HQ)",
-      address: "123 Packaging Street, Industrial District, NY 10001",
-      phone: "+1 (555) 123-4567",
-      email: "ny@packagepro.com",
-      hours: "Mon-Fri: 8AM-6PM EST",
+      city: t("New York (HQ)"),
+      address: t("123 Packaging Street, Industrial District, NY 10001"),
+      phone: t("+1 (555) 123-4567"),
+      email: t("ny@packagepro.com"),
+      hours: t("Mon-Fri: 8AM-6PM EST"),
     },
     {
-      city: "Los Angeles",
-      address: "456 Innovation Blvd, Tech Center, CA 90210",
-      phone: "+1 (555) 987-6543",
-      email: "la@packagepro.com",
-      hours: "Mon-Fri: 8AM-6PM PST",
+      city: t("Los Angeles"),
+      address: t("456 Innovation Blvd, Tech Center, CA 90210"),
+      phone: t("+1 (555) 987-6543"),
+      email: t("la@packagepro.com"),
+      hours: t("Mon-Fri: 8AM-6PM PST"),
     },
     {
-      city: "Chicago",
-      address: "789 Commerce Ave, Business District, IL 60601",
-      phone: "+1 (555) 456-7890",
-      email: "chicago@packagepro.com",
-      hours: "Mon-Fri: 8AM-6PM CST",
+      city: t("Chicago"),
+      address: t("789 Commerce Ave, Business District, IL 60601"),
+      phone: t("+1 (555) 456-7890"),
+      email: t("chicago@packagepro.com"),
+      hours: t("Mon-Fri: 8AM-6PM CST"),
     },
   ]
 
   const inquiryTypes = [
-    { value: "general", label: "General Inquiry" },
-    { value: "quote", label: "Request Quote" },
-    { value: "support", label: "Technical Support" },
-    { value: "partnership", label: "Partnership" },
-    { value: "careers", label: "Careers" },
+    { value: "general", label: t("General Inquiry") },
+    { value: "quote", label: t("Request Quote") },
+    { value: "support", label: t("Technical Support") },
+    { value: "partnership", label: t("Partnership") },
+    { value: "careers", label: t("Careers") },
   ]
 
   return (
@@ -124,8 +127,8 @@ export default function ContactPage() {
       <Navbar />
       <section className="pt-32 pb-16 px-4 bg-offwhite text-center">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-7xl font-black text-deepgreen mb-6">Contact Us</h1>
-          <p className="text-xl md:text-2xl text-steel mb-8">Ready to elevate your packaging? Reach out to our team for a custom quote or more information.</p>
+          <h1 className="text-5xl md:text-7xl font-black text-deepgreen mb-6">{t("Contact Us")}</h1>
+          <p className="text-xl md:text-2xl text-steel mb-8">{t("Ready to elevate your packaging? Reach out to our team for a custom quote or more information.")}</p>
       </div>
       </section>
       <section className="py-16 px-4">
@@ -151,8 +154,8 @@ export default function ContactPage() {
       </section>
       <section className="py-16 px-4 bg-kraft/10">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-deepgreen mb-4">Send us a Message</h2>
-          <p className="text-lg text-steel mb-8">Fill out the form below and we'll get back to you within 24 hours.</p>
+          <h2 className="text-3xl font-bold text-deepgreen mb-4">{t("Send us a Message")}</h2>
+          <p className="text-lg text-steel mb-8">{t("Fill out the form below and we'll get back to you within 24 hours.")}</p>
           {/* Contact form remains as is, but ensure all inputs/buttons use visible, modern styles */}
       </div>
       </section>

@@ -105,7 +105,7 @@ export default function Navbar() {
               title="Toggle Language"
             >
               <Languages className="w-5 h-5" />
-              {i18n.language === 'en' ? 'EN' : 'AR'}
+              {i18n.language === 'en' ? t('EN') : t('AR')}
             </button>
             {/* WhatsApp Button */}
             <a
@@ -165,7 +165,7 @@ export default function Navbar() {
                 title="Toggle Language"
               >
                 <Languages className="w-5 h-5" />
-                {i18n.language === 'en' ? 'EN' : 'AR'}
+                {i18n.language === 'en' ? t('EN') : t('AR')}
               </button>
               {/* WhatsApp Button */}
               <a
