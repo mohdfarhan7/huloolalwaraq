@@ -164,6 +164,7 @@ function Box({ open, logoPath, showLinks, shiver, showConfetti, showLabels }: Bo
   const lidRef = useRef<THREE.Mesh>(null)
   const groupRef = useRef<THREE.Group>(null)
   const logoTexture = useTexture(logoPath)
+  const frontLogoTexture = useTexture('/logo.jpg')
   useFrame(() => {
     if (groupRef.current) {
       if (shiver) {
@@ -192,6 +193,13 @@ function Box({ open, logoPath, showLinks, shiver, showConfetti, showLabels }: Bo
         <boxGeometry args={[3, 2, 3]} />
         <meshStandardMaterial color="#B89B72" />
       </mesh>
+      {/* Logo on front face */}
+      {frontLogoTexture && (
+        <mesh position={[0, 0, 1.52]} rotation={[0, 0, 0]}>
+          <planeGeometry args={[1.5, 1.5]} />
+          <meshBasicMaterial map={frontLogoTexture} transparent />
+        </mesh>
+      )}
       {/* Box lid */}
       <mesh ref={lidRef} position={[0, 1.01, -1.5]} castShadow>
         <boxGeometry args={[3, 0.2, 3]} />

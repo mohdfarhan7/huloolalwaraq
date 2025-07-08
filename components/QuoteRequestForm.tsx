@@ -60,7 +60,7 @@ export default function QuoteRequestForm({ onClose }: { onClose: () => void }) {
   }
 
   return (
-    <form className="p-8 w-full max-w-md bg-white rounded-2xl shadow-xl border border-kraft/30 max-h-[80vh] overflow-y-auto scrollbar-thin scrollbar-thumb-kraft scrollbar-track-offwhite" onSubmit={handleSubmit}>
+    <form className="p-8 w-full max-w-[95vw] sm:max-w-md mx-auto my-4 bg-white rounded-2xl shadow-xl border border-kraft/30 max-h-[80vh] overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-kraft scrollbar-track-offwhite" onSubmit={handleSubmit}>
       <div className="sticky top-0 z-10 bg-white pb-2 mb-4">
         <h2 className="text-3xl font-extrabold text-deepgreen text-center tracking-tight">Request a Quote</h2>
       </div>
