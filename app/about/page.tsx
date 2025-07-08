@@ -127,13 +127,13 @@ export default function AboutPage() {
         <div className="max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-black text-deepgreen mb-6">{t('About HuloolAlWaraq')}</h1>
           <p className="text-xl md:text-2xl text-steel mb-8">{t('Pioneering the future of packaging with innovation, sustainability, and excellence since 2005.')}</p>
-        </div>
+      </div>
       </section>
       <section className="py-16 px-4 bg-kraft/10">
         <div className="max-w-5xl mx-auto text-center">
           <h2 className="text-4xl font-bold text-deepgreen mb-4">{t('Our Mission')}</h2>
           <p className="text-lg text-steel mb-8">{t('To provide innovative, sustainable packaging solutions that protect products, enhance brand value, and contribute to a better environment for future generations.')}</p>
-        </div>
+          </div>
       </section>
       <section className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
@@ -141,7 +141,7 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-3 gap-8">
             {teamMembers.map((member, idx) => (
               <div key={idx} className="bg-offwhite border border-steel rounded-2xl p-8 text-center shadow hover:shadow-lg transition-all flex flex-col items-center">
-                <div className="text-6xl mb-4">{member.image}</div>
+                        <div className="text-6xl mb-4">{member.image}</div>
                 <h3 className="text-xl font-bold text-deepgreen mb-2">{member.name}</h3>
                 <p className="text-steel mb-2">{member.role}</p>
                 <p className="text-steel text-sm mb-4">{member.bio}</p>
@@ -149,11 +149,11 @@ export default function AboutPage() {
                   {member.expertise.map((skill, skillIdx) => (
                     <span key={skillIdx} className="px-3 py-1 bg-kraft/20 text-steel text-xs rounded-full border border-kraft/40">{skill}</span>
                   ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
       </section>
       <section className="py-16 px-4 bg-kraft/10">
         <div className="max-w-5xl mx-auto text-center">
