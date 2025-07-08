@@ -2,37 +2,36 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Package, Menu, X, ChevronDown } from "lucide-react"
+import { Package, Menu, X, ChevronDown, Home, GalleryHorizontal, Languages, Lock, MessageCircle, Box, Building2, FileText } from "lucide-react"
 import { useState } from "react"
 
 export default function Navbar() {
   const pathname = usePathname()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isProductsOpen, setIsProductsOpen] = useState(false)
+  const [isServicesOpen, setIsServicesOpen] = useState(false)
+  const [lang, setLang] = useState<'en' | 'ar'>("en")
 
   const navItems = [
-    { href: "/", label: "Home" },
+    { href: "/", label: "Home", icon: <Home className="w-5 h-5 mr-1" /> },
     {
-      href: "/packaging-products",
-      label: "Products",
+      href: "/services",
+      label: "Services",
+      icon: <Building2 className="w-5 h-5 mr-1" />,
       hasDropdown: true,
       dropdownItems: [
-        { href: "/packaging-products?category=corrugated", label: "Corrugated Boxes" },
-        { href: "/packaging-products?category=protective", label: "Protective Packaging" },
-        { href: "/packaging-products?category=industrial", label: "Industrial Packaging" },
-        { href: "/packaging-products?category=food", label: "Food Packaging" },
-        { href: "/packaging-products?category=retail", label: "Retail Packaging" },
-        { href: "/packaging-products?category=specialty", label: "Specialty Products" },
+        { href: "/services/packaging", label: "Packaging" },
+        { href: "/services/logistics", label: "Logistics" },
+        { href: "/services/consulting", label: "Consulting" },
       ],
     },
-    { href: "/services", label: "Services" },
-    { href: "/box-details", label: "Box Details" },
-    { href: "/about", label: "About Us" },
-    { href: "/contact", label: "Contact" },
+    { href: "/packaging-products", label: "Products", icon: <Box className="w-5 h-5 mr-1" /> },
+    { href: "/gallery", label: "Gallery", icon: <GalleryHorizontal className="w-5 h-5 mr-1" /> },
+    { href: "/quote", label: "Request a Quote", icon: <FileText className="w-5 h-5 mr-1" /> },
+    { href: "/portal", label: "Client Portal", icon: <Lock className="w-5 h-5 mr-1" /> },
   ]
 
   return (
-    <nav className="bg-offwhite border-b border-steel/30 fixed top-0 left-0 right-0 z-50 shadow-sm">
+    <nav className="bg-offwhite border-b border-steel/30 sticky top-0 left-0 right-0 z-50 shadow-sm">
       <div className="max-w-8xl mx-auto px-4">
         <div className="flex justify-between items-center h-20">
           <Link href="/" className="flex items-center space-x-3 group">
@@ -47,30 +46,31 @@ export default function Navbar() {
             </div>
           </Link>
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex space-x-8">
+          <div className="hidden lg:flex space-x-6 items-center">
             {navItems.map((item) => (
               <div key={item.href} className="relative group">
                 <Link
                   href={item.href}
                   className={`relative px-4 py-2 text-steel hover:text-deepgreen transition-all duration-200 font-medium flex items-center gap-1 ${
-                    pathname === item.href || (item.hasDropdown && pathname.startsWith("/packaging-products"))
+                    pathname === item.href || (item.hasDropdown && pathname.startsWith("/services"))
                       ? "text-deepgreen border-b-2 border-deepgreen"
                       : ""
                   }`}
-                  onMouseEnter={() => item.hasDropdown && setIsProductsOpen(true)}
-                  onMouseLeave={() => item.hasDropdown && setIsProductsOpen(false)}
+                  onMouseEnter={() => item.hasDropdown && setIsServicesOpen(true)}
+                  onMouseLeave={() => item.hasDropdown && setIsServicesOpen(false)}
                 >
+                  {item.icon}
                   {item.label}
                   {item.hasDropdown && <ChevronDown className="w-4 h-4" />}
                 </Link>
                 {/* Dropdown Menu */}
                 {item.hasDropdown && (
                   <div
-                    className={`absolute top-full left-0 mt-2 w-64 bg-offwhite border border-steel rounded-2xl shadow-lg transition-all duration-200 ${
-                      isProductsOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible translate-y-2"
+                    className={`absolute top-full left-0 mt-2 w-56 bg-offwhite border border-steel rounded-2xl shadow-lg transition-all duration-200 ${
+                      isServicesOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible translate-y-2"
                     }`}
-                    onMouseEnter={() => setIsProductsOpen(true)}
-                    onMouseLeave={() => setIsProductsOpen(false)}
+                    onMouseEnter={() => setIsServicesOpen(true)}
+                    onMouseLeave={() => setIsServicesOpen(false)}
                   >
                     <div className="p-2">
                       {item.dropdownItems?.map((dropdownItem) => (
@@ -87,6 +87,25 @@ export default function Navbar() {
                 )}
               </div>
             ))}
+            {/* Language Toggle */}
+            <button
+              onClick={() => setLang(lang === 'en' ? 'ar' : 'en')}
+              className="ml-2 px-3 py-2 rounded-lg bg-kraft/20 text-deepgreen font-bold flex items-center gap-1 hover:bg-kraft/40 transition-all"
+              title="Toggle Language"
+            >
+              <Languages className="w-5 h-5" />
+              {lang === 'en' ? 'EN' : 'AR'}
+            </button>
+            {/* WhatsApp Button */}
+            <a
+              href="https://wa.me/966500000000"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ml-2 px-3 py-2 rounded-lg bg-green-500 text-white font-bold flex items-center gap-2 hover:bg-green-600 transition-all shadow"
+              title="Chat on WhatsApp"
+            >
+              <MessageCircle className="w-5 h-5" /> WhatsApp
+            </a>
           </div>
           {/* Mobile Menu Button */}
           <button
@@ -107,8 +126,9 @@ export default function Navbar() {
                     onClick={() => setIsMenuOpen(false)}
                     className={`block px-4 py-3 text-steel hover:text-deepgreen hover:bg-kraft/20 rounded-lg transition-all duration-200 ${
                       pathname === item.href ? "text-deepgreen bg-kraft/10" : ""
-                    }`}
+                    } flex items-center gap-2`}
                   >
+                    {item.icon}
                     {item.label}
                   </Link>
                   {item.hasDropdown && (
@@ -127,6 +147,25 @@ export default function Navbar() {
                   )}
                 </div>
               ))}
+              {/* Language Toggle */}
+              <button
+                onClick={() => setLang(lang === 'en' ? 'ar' : 'en')}
+                className="w-full px-4 py-3 rounded-lg bg-kraft/20 text-deepgreen font-bold flex items-center gap-2 hover:bg-kraft/40 transition-all"
+                title="Toggle Language"
+              >
+                <Languages className="w-5 h-5" />
+                {lang === 'en' ? 'EN' : 'AR'}
+              </button>
+              {/* WhatsApp Button */}
+              <a
+                href="https://wa.me/966500000000"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full px-4 py-3 rounded-lg bg-green-500 text-white font-bold flex items-center gap-2 hover:bg-green-600 transition-all shadow"
+                title="Chat on WhatsApp"
+              >
+                <MessageCircle className="w-5 h-5" /> WhatsApp
+              </a>
             </div>
           </div>
         )}
