@@ -34,7 +34,7 @@ export default function Navbar() {
     },
     { href: "/packaging-products", label: t('Products'), icon: <Box className="w-5 h-5 mr-1" /> },
     { href: "/gallery", label: t('Gallery'), icon: <GalleryHorizontal className="w-5 h-5 mr-1" /> },
-    { href: "/quote", label: t('Request a Quote'), icon: <FileText className="w-5 h-5 mr-1" /> },
+    { href: "/contact", label: t('Contact Us'), icon: <MessageCircle className="w-5 h-5 mr-1" /> },
     { href: "/portal", label: t('Client Portal'), icon: <Lock className="w-5 h-5 mr-1" /> },
   ]
 

@@ -36,11 +36,12 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-offwhite text-dark font-sans">
       <Navbar />
-      <section className="relative w-full min-h-screen flex items-center justify-center overflow-visible">
+      <section className="relative w-full min-h-screen md:h-[80vh] h-[60vh] flex items-center justify-center overflow-visible p-0 m-0 bg-transparent">
         <BoxExperience />
         <div className="absolute inset-0 flex flex-col items-center justify-center z-10 pointer-events-none">
           <h1 className="text-5xl md:text-7xl font-black text-deepgreen drop-shadow-lg mb-4">{t('Premium Packaging, Delivered')}</h1>
           <p className="text-2xl md:text-3xl text-steel font-medium drop-shadow mb-8">{t('Cinematic. Sustainable. Unforgettable.')}</p>
+          <span className="block md:hidden mt-8 text-steel text-lg animate-bounce pointer-events-auto select-none">{t('Swipe up to open')}</span>
         </div>
       </section>
       {/* About Section */}

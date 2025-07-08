@@ -229,14 +229,9 @@ export default function BoxExperience() {
     {
       onDrag: ({ direction, down, event }) => {
         if (down) return;
-        // direction[1] < 0 = swipe up, direction[1] > 0 = swipe down
         if (Math.abs(direction[1]) > Math.abs(direction[0])) {
           if (direction[1] < 0) {
-            // Swipe up triggers box open
             if (!open) setOpen(true);
-          } else if (direction[1] > 0) {
-            // Swipe down could reset or close box (optional)
-            // setOpen(false);
           }
         }
       },
@@ -256,9 +251,9 @@ export default function BoxExperience() {
     setShowLabels(false)
     setContextLost(false)
     const t1 = setTimeout(() => setShiver(false), 900)
-    const t2 = setTimeout(() => setOpen(true), 1100)
-    const t3 = setTimeout(() => setShowConfetti(true), 1400)
-    const t4 = setTimeout(() => setShowLinks(true), 1700)
+    const t2 = setTimeout(() => setShowConfetti(true), 1100)
+    const t3 = setTimeout(() => setShowLinks(true), 1400)
+    const t4 = setTimeout(() => setOpen(true), 1700)
     const t5 = setTimeout(() => setShowLabels(true), 2200)
     return () => {
       clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); clearTimeout(t4); clearTimeout(t5)
@@ -266,13 +261,14 @@ export default function BoxExperience() {
     }
   }, [])
   return (
-    <div ref={containerRef} className="relative w-full h-full touch-pan-y">
+    <div ref={containerRef} className="relative w-full h-full max-w-3xl mx-auto touch-pan-y" style={{maxHeight: '90vh'}}>
       {contextLost && (
         <div className="absolute inset-0 flex items-center justify-center bg-black/70 z-50">
           <div className="text-white text-2xl font-bold p-8 rounded-xl bg-black/80 border-2 border-kraft">WebGL context lost. Please reload the page.</div>
         </div>
       )}
       <Canvas camera={{ position: [0, 3, 7], fov: 40 }} shadows
+        style={{ width: '100%', height: '100%', maxHeight: '90vh', maxWidth: '100vw', aspectRatio: '1.5/1' }}
         onCreated={({ gl }) => {
           gl.getContext().canvas.addEventListener('webglcontextlost', (e) => {
             e.preventDefault();
