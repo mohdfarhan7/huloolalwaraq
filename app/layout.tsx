@@ -4,6 +4,7 @@ import { Inter } from "next/font/google"
 import Footer from "@/components/footer"
 import "./globals.css"
 import I18nProvider from "@/components/i18n-provider"
+import FloatingQuoteButton from "@/components/FloatingQuoteButton"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -20,6 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={inter.className}>
         <I18nProvider>
           {children}
+          <FloatingQuoteButton />
         </I18nProvider>
       </body>
     </html>

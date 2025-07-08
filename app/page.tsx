@@ -36,7 +36,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-offwhite text-dark font-sans">
       <Navbar />
-      <section className="relative w-full h-[calc(100vh-80px)] flex items-center justify-center overflow-hidden pt-20">
+      <section className="relative w-full min-h-screen flex items-center justify-center overflow-visible">
         <BoxExperience />
         <div className="absolute inset-0 flex flex-col items-center justify-center z-10 pointer-events-none">
           <h1 className="text-5xl md:text-7xl font-black text-deepgreen drop-shadow-lg mb-4">{t('Premium Packaging, Delivered')}</h1>

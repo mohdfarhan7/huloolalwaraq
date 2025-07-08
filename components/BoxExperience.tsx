@@ -2,6 +2,7 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import { useRef, useState, useEffect } from 'react'
 import { Float, OrbitControls, useTexture } from '@react-three/drei'
 import * as THREE from 'three'
+import { useGesture } from '@use-gesture/react'
 
 const NAV_LINKS = [
   { icon: '📦', label: 'Custom Boxes', href: '/packaging-products?category=corrugated' },
@@ -221,6 +222,32 @@ export default function BoxExperience() {
   const [showLinks, setShowLinks] = useState(false)
   const [showLabels, setShowLabels] = useState(false)
   const [contextLost, setContextLost] = useState(false)
+  const containerRef = useRef(null)
+
+  // Add swipe gesture for mobile
+  useGesture(
+    {
+      onDrag: ({ direction, down, event }) => {
+        if (down) return;
+        // direction[1] < 0 = swipe up, direction[1] > 0 = swipe down
+        if (Math.abs(direction[1]) > Math.abs(direction[0])) {
+          if (direction[1] < 0) {
+            // Swipe up triggers box open
+            if (!open) setOpen(true);
+          } else if (direction[1] > 0) {
+            // Swipe down could reset or close box (optional)
+            // setOpen(false);
+          }
+        }
+      },
+    },
+    {
+      target: containerRef,
+      eventOptions: { passive: false },
+      drag: { axis: 'y', filterTaps: true },
+    }
+  )
+
   useEffect(() => {
     setShiver(true)
     setOpen(false)
@@ -239,7 +266,7 @@ export default function BoxExperience() {
     }
   }, [])
   return (
-    <div className="w-full h-full flex items-center justify-center bg-cardboard-texture relative">
+    <div ref={containerRef} className="relative w-full h-full touch-pan-y">
       {contextLost && (
         <div className="absolute inset-0 flex items-center justify-center bg-black/70 z-50">
           <div className="text-white text-2xl font-bold p-8 rounded-xl bg-black/80 border-2 border-kraft">WebGL context lost. Please reload the page.</div>
